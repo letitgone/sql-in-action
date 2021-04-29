@@ -23,3 +23,10 @@ WHERE id NOT IN (
              WHERE id IN (SELECT id FROM `functions` GROUP BY identify HAVING COUNT(id) > 1)
          ) a
 );
+
+-- 复制数据
+UPDATE profession_site
+SET profession_type = 0;
+INSERT INTO `profession_site`(profession_id, place_id, create_by, create_at, profession_type)
+SELECT profession_id, place_id, create_by, NOW(), 1
+FROM profession_site;
