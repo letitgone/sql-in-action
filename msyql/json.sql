@@ -39,3 +39,9 @@ UPDATE wxyx.service
 SET template_information = json_set(template_information, '$.templateServiceInfo.title.show', 0),
     template_information = json_set(template_information, '$.templateServiceInfo.serious.show', 0)
 WHERE template_code = 'AssetLoan';
+
+-- delete json
+UPDATE form_template
+SET template_service_info = JSON_REMOVE(template_service_info, '$.title'),
+    template_service_info = JSON_REMOVE(template_service_info, '$.assetFinanceList')
+WHERE form_template_code = 'AssetMaintenance';
