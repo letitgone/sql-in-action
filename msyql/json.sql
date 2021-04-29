@@ -45,3 +45,8 @@ UPDATE form_template
 SET template_service_info = JSON_REMOVE(template_service_info, '$.title'),
     template_service_info = JSON_REMOVE(template_service_info, '$.assetFinanceList')
 WHERE form_template_code = 'AssetMaintenance';
+
+-- 新增json
+UPDATE assets
+SET asset_attributes = JSON_SET(asset_attributes, '$.end_time',
+                                JSON_OBJECT("value", "", "text", ""))
